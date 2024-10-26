@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: consolas;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #000;
+}
+
+.scan {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.scan .qrcode {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    background: url('./img/QR_fundo.jpg');
+    /*deixa a imagem do tamanho certo*/
+    background-size: 300px;
+}
+
+.scan .qrcode::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: url('./img/QR_frente.jpg');
+    background-size: 300px;
+    overflow: hidden;
+    animation: anime 4s ease-in-out infinite;
+}
+
+@keyframes anime {
+    0%, 100% {
+        height: 0;
+    }
+
+    50% {
+        height: calc(100% - 20px);
+    }
+}
+
+.scan .qrcode::after {
+    content: '';
+    position: absolute;
+    inset: 20px;
+    width: calc(100% - 40px);
+    height: 2px;
+    background: #35fd5c;
+    filter: drop-shadow(0 0 20px #35fd5c) drop-shadow(0 0 60px #35fd5c);
+    animation: animeLine 4s ease-in-out infinite;
+}
+
+@keyframes animeLine {
+    0% {
+        top: 20px;
+    }
+
+    50% {
+        top: calc(100% - 20px);
+    }
+}
+
+.scan .border {
+    position: absolute;
+    /*tava inset 0 mais nao ficou alinhada entao usei 0 0 0 44px para sair da esquerda e ir para a direita pra ficar alinhada*/
+    inset: 0 0 0 44px;
+    background: url('./img/QR_boder.jpg');
+    background-size: 300px;
+    background-repeat: no-repeat;
+    animation: animeText 0.5s linear infinite;
+}
+
+.scan h3 {
+    text-transform: uppercase;
+    font-size: 2em;
+    margin-top: 20px;
+    color: #fff;
+    letter-spacing: 2px;
+    filter: drop-shadow(0 0 20px #fff) drop-shadow(0 0 60px #fff);
+    animation: animeText 0.5s steps(1) infinite;
+}
+
+@keyframes animeText {
+    0%, 100% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
